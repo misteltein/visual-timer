@@ -27,23 +27,42 @@ function draw() {
     let angle = map(remainingTime, 0, totalTime, 0, 360); // 残り時間に基づいて角度を計算
     fill(100, 100, 255); // 赤色で塗りつぶし
     arc(width / 2, height / 2, 300, 300, -90, angle - 90, PIE); // 円弧を描画
+
+    // 残り時間をテキストで表示
+    fill(0);
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    let H = nf(floor(remainingTime / 60), 2);
+    let M = nf(floor(remainingTime % 60), 2);
+    strH = H > 0 ? H : '00';
+    strM = M > 0 ? M : '00';
+
+    fill(255);
+    text(strH + ':' + strM, width / 2, height / 2);
   } else {
     // タイマー終了
+    stroke(100,100,100);
+    noFill();
+    circle(width / 2, height / 2, 300, 300);
     noLoop(); // 描画ループを停止
     console.log('タイマー終了');
+    fill(0);
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    text('00:00', width / 2, height / 2);
   }
 
-  // 残り時間をテキストで表示
-  fill(0);
-  textSize(32);
-  textAlign(CENTER, CENTER);
-  let strH = nf(floor(remainingTime / 60), 2);
-  let strM = nf(floor(remainingTime % 60), 2);
-  strH = strH === '-1'? '00' : strH;
-  strM = strM === '-1'? '00' : strM;
-
-  fill(255);
-  text(strH + ':' + strM, width / 2, height / 2);
+  // // 残り時間をテキストで表示
+  // fill(0);
+  // textSize(32);
+  // textAlign(CENTER, CENTER);
+  // let H = nf(floor(remainingTime / 60), 2);
+  // let M = nf(floor(remainingTime % 60), 2);
+  // strH = H > 0 ? H : '00';
+  // strM = M > 0 ? M : '00';
+  //
+  // fill(255);
+  // text(strH + ':' + strM, width / 2, height / 2);
 }
 
 // タイマーを開始する関数
@@ -56,3 +75,5 @@ function startTimer() {
   startTime = millis(); // 開始時刻を更新
   loop(); // 描画ループを再開（タイマー再スタートの場合）
 }
+
+// beep sound を鳴らすこと

@@ -3,13 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>視覚的タイマー (p5.js)</title>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.1/lib/p5.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </head>
 <body>
-<div>
-    <input type="number" id="hours" placeholder="時間(H)" min="0" max="23" value="0">
-    <input type="number" id="minutes" placeholder="分(M)" min="0" max="59" value="0">
-    <button id="startButton">タイマー開始</button>
+<div class="container mt-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-auto">
+            <input type="number" id="hours" class="form-control form-control-lg" min="0" max="23" value="1">
+        </div>
+        <div class="col-auto align-self-center">
+            <span class="input-group-text">時間</span>
+        </div>
+        <div class="col-auto">
+            <input type="number" id="minutes" class="form-control form-control-lg" min="0" max="59" value="30">
+        </div>
+        <div class="col-auto align-self-center">
+            <span class="input-group-text">分</span>
+        </div>
+        <div class="col-auto">
+            <button id="startButton" class="btn btn-primary btn-lg">タイマー開始</button>
+        </div>
+    </div>
 </div>
 <script src="sketch.js"></script>
 </body>

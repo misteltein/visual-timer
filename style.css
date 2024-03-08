@@ -1,0 +1,10 @@
+body {
+    text-align: center;
+}
+.input-group-text {
+    background-color: transparent; /* 背景色を透明に */
+    border: none; /* 枠線を削除 */
+    padding: 0; /* パディングを削除または調整 */
+    margin-left: -1rem; /* 左側のマージンを調整して入力フィールドに近づける */
+    font-size: 1rem; /* フォントサイズを調整 */
+}
