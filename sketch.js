@@ -18,6 +18,7 @@ function draw() {
   let currentTime = millis(); // 現在の時間（ミリ秒）
   let elapsed = (currentTime - startTime) / 1000; // 経過時間（秒）
   let remainingTime = totalTime - elapsed; // 残り時間（秒）
+  let strH, strM, strS;
 
   if (remainingTime > 0) {
     fill(255, 100, 100);
@@ -39,7 +40,6 @@ function draw() {
     strS = S > 0 ? S : '00';
 
     fill(255);
-    text(strH + ':' + strM + ':' + strS, width / 2, height / 2);
   } else {
     // タイマー終了
     stroke(100, 100, 100);
@@ -47,11 +47,17 @@ function draw() {
     circle(width / 2, height / 2, 300, 300);
     noLoop(); // 描画ループを停止
 
+    strH = H > 0 ? H : '00';
+    strM = M > 0 ? M : '00';
+    strS = S > 0 ? S : '00';
+
     fill(0);
     textSize(32);
     textAlign(CENTER, CENTER);
-    text('00:00:00', width / 2, height / 2);
   }
+  text(strH + ':' + strM + ':' + strS, width / 2, height / 2);
+  // <title> を更新
+  document.title = strH + ':' + strM + ':' + strS + ' - Timer';
 }
 
 // タイマーを開始する関数
