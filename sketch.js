@@ -1,7 +1,6 @@
 let totalTime = 0; // タイマーの総時間（秒）
 let startTime = 0; // タイマー開始時刻
 
-// p5.jsのsetup関数：キャンバスの設定
 function setup() {
   createCanvas(400, 400);
   angleMode(DEGREES); // 角度モードを度数法に設定
@@ -11,7 +10,6 @@ function setup() {
   button.mousePressed(startTimer); // mousePressedイベントにstartTimer関数を割り当て
 }
 
-// p5.jsのdraw関数：フレームごとの描画
 function draw() {
   background(255); // 背景を灰色に設定
   noStroke();
@@ -53,18 +51,6 @@ function draw() {
     textAlign(CENTER, CENTER);
     text('00:00:00', width / 2, height / 2);
   }
-
-  // // 残り時間をテキストで表示
-  // fill(0);
-  // textSize(32);
-  // textAlign(CENTER, CENTER);
-  // let H = nf(floor(remainingTime / 60), 2);
-  // let M = nf(floor(remainingTime % 60), 2);
-  // strH = H > 0 ? H : '00';
-  // strM = M > 0 ? M : '00';
-  //
-  // fill(255);
-  // text(strH + ':' + strM, width / 2, height / 2);
 }
 
 // タイマーを開始する関数
@@ -95,8 +81,8 @@ function saveSettings() {
 
 function loadSettings() {
   const cookies = document.cookie.split(';');
-  let hours = 0; // デフォルト値
-  let minutes = 0; // デフォルト値
+  let hours = 1; // デフォルト値
+  let minutes = 30; // デフォルト値
 
   // クッキーから時間と分を検索
   for (let i = 0; i < cookies.length; i++) {
