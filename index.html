@@ -1,33 +1,43 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>視覚的タイマー (p5.js)</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>視覚的タイマー (p5.js)</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </head>
 <body>
-<div class="container mt-5">
-    <div class="row justify-content-center align-items-center">
-        <div class="col-auto">
-            <input type="number" id="hours" class="form-control form-control-lg" min="0" max="23" value="1">
-        </div>
-        <div class="col-auto align-self-center">
+<div class="whole">
+  <div class="container">
+    <div class="d-flex justify-content-center">
+      <div class="d-inline-flex flex-column align-items-center"> <!-- 追加のラッパー -->
+        <div class="row">
+          <div class="col-auto">
+            <input type="number" id="hours" class="form-control form-control-lg input-number" min="0" max="23" value="1">
+          </div>
+          <div class="col-auto align-self-center">
             <span class="input-group-text">時間</span>
-        </div>
-        <div class="col-auto">
-            <input type="number" id="minutes" class="form-control form-control-lg" min="0" max="59" value="30">
-        </div>
-        <div class="col-auto align-self-center">
+          </div>
+          <div class="col-auto">
+            <input type="number" id="minutes" class="form-control form-control-lg input-number" min="0" max="59" value="30">
+          </div>
+          <div class="col-auto align-self-center">
             <span class="input-group-text">分</span>
+          </div>
         </div>
-        <div class="col-auto">
+        <div class="row mt-4">
+          <div class="col-auto">
             <button id="startButton" class="btn btn-primary btn-lg">タイマー開始</button>
+          </div>
         </div>
+      </div>
     </div>
+    <div id="canvas"></div>
+  </div>
 </div>
+
 <script src="sketch.js"></script>
 </body>
 </html>

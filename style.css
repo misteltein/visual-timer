@@ -1,10 +1,40 @@
-body {
+/* 基本のリセットと全体設定 */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* 横スクロールを防ぐ */
     text-align: center;
 }
+
+/* メインコンテンツのスタイリング */
+.whole {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* ビューポートの高さを全体に使う */
+    width: 100vw; /* ビューポートの幅を全体に使う */
+}
+
+#canvas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* フォーム要素のスタイリング */
 .input-group-text {
     background-color: transparent; /* 背景色を透明に */
     border: none; /* 枠線を削除 */
     padding: 0; /* パディングを削除または調整 */
     margin-left: -1rem; /* 左側のマージンを調整して入力フィールドに近づける */
     font-size: 1rem; /* フォントサイズを調整 */
+}
+
+.input-number {
+    width: 90px; /* 必要に応じて調整 */
+    text-align: right; /* 数値を右寄せにする */
 }

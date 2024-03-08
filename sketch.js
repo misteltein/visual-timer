@@ -2,7 +2,8 @@ let totalTime = 0; // タイマーの総時間（秒）
 let startTime = 0; // タイマー開始時刻
 
 function setup() {
-  createCanvas(400, 400);
+  let canvas = createCanvas(375, 375);
+  canvas.parent('canvas');
   angleMode(DEGREES); // 角度モードを度数法に設定
 
   // ボタンクリックイベントの設定
