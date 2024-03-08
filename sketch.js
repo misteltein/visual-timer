@@ -21,7 +21,7 @@ function draw() {
   let remainingTime = totalTime - elapsed; // 残り時間（秒）
 
   if (remainingTime > 0) {
-    fill(255,100,100);
+    fill(255, 100, 100);
     circle(width / 2, height / 2, 300, 300);
     // 残り時間がある場合、タイマーを描画
     let angle = map(remainingTime, 0, totalTime, 0, 360); // 残り時間に基づいて角度を計算
@@ -32,24 +32,26 @@ function draw() {
     fill(0);
     textSize(32);
     textAlign(CENTER, CENTER);
-    let H = nf(floor(remainingTime / 60), 2);
-    let M = nf(floor(remainingTime % 60), 2);
+    let H = nf(floor(remainingTime / 3600), 2);
+    let M = nf(floor((remainingTime % 3600) / 60), 2);
+    let S = nf(floor(remainingTime % 60), 2);
     strH = H > 0 ? H : '00';
     strM = M > 0 ? M : '00';
+    strS = S > 0 ? S : '00';
 
     fill(255);
-    text(strH + ':' + strM, width / 2, height / 2);
+    text(strH + ':' + strM + ':' + strS, width / 2, height / 2);
   } else {
     // タイマー終了
-    stroke(100,100,100);
+    stroke(100, 100, 100);
     noFill();
     circle(width / 2, height / 2, 300, 300);
     noLoop(); // 描画ループを停止
-    console.log('タイマー終了');
+
     fill(0);
     textSize(32);
     textAlign(CENTER, CENTER);
-    text('00:00', width / 2, height / 2);
+    text('00:00:00', width / 2, height / 2);
   }
 
   // // 残り時間をテキストで表示
@@ -74,6 +76,43 @@ function startTimer() {
   totalTime = (hours * 60 + minutes) * 60; // 総時間を秒単位で計算
   startTime = millis(); // 開始時刻を更新
   loop(); // 描画ループを再開（タイマー再スタートの場合）
+  saveSettings();// 設定を保存
 }
 
 // beep sound を鳴らすこと
+function saveSettings() {
+  const hours = document.getElementById('hours').value;
+  const minutes = document.getElementById('minutes').value;
+
+  // クッキーに保存するための日付を設定（例えば、1年後）
+  const expires = new Date();
+  expires.setFullYear(expires.getFullYear() + 1);
+
+  // クッキーに時間と分を保存
+  document.cookie = 'hours=' + hours + ';expires=' + expires.toUTCString() + ';path=/';
+  document.cookie = 'minutes=' + minutes + ';expires=' + expires.toUTCString() + ';path=/';
+}
+
+function loadSettings() {
+  const cookies = document.cookie.split(';');
+  let hours = 0; // デフォルト値
+  let minutes = 0; // デフォルト値
+
+  // クッキーから時間と分を検索
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].trim();
+    if (cookie.startsWith('hours=')) {
+      hours = cookie.substring('hours='.length, cookie.length);
+    } else if (cookie.startsWith('minutes=')) {
+      minutes = cookie.substring('minutes='.length, cookie.length);
+    }
+  }
+
+  // フォームの値を設定
+  document.getElementById('hours').value = hours;
+  document.getElementById('minutes').value = minutes;
+}
+
+// ページ読み込み時に設定を読み込む
+document.addEventListener('DOMContentLoaded', loadSettings);
+
