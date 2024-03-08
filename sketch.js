@@ -1,7 +1,9 @@
 let totalTime = 0; // タイマーの総時間（秒）
 let startTime = 0; // タイマー開始時刻
+const alarmSound = new Audio('beep.mp3');
 
 function setup() {
+  askNotificationPermission();
   let canvas = createCanvas(375, 375);
   canvas.parent('canvas');
   angleMode(DEGREES); // 角度モードを度数法に設定
@@ -47,13 +49,15 @@ function draw() {
     circle(width / 2, height / 2, 300, 300);
     noLoop(); // 描画ループを停止
 
-    strH = H > 0 ? H : '00';
-    strM = M > 0 ? M : '00';
-    strS = S > 0 ? S : '00';
+    strH = '00';
+    strM = '00';
+    strS = '00';
 
     fill(0);
     textSize(32);
     textAlign(CENTER, CENTER);
+    alarmSound.play();
+    sendNotification();
   }
   text(strH + ':' + strM + ':' + strS, width / 2, height / 2);
   // <title> を更新
@@ -109,3 +113,26 @@ function loadSettings() {
 // ページ読み込み時に設定を読み込む
 document.addEventListener('DOMContentLoaded', loadSettings);
 
+function askNotificationPermission() {
+  // ブラウザが通知をサポートしているか確認
+  if (!("Notification" in window)) {
+    alert("このブラウザはデスクトップ通知をサポートしていません。");
+  } else if (Notification.permission !== "denied") {
+    Notification.requestPermission().then(permission => {
+      if (permission === "granted") {
+        console.log("通知の許可が得られました。");
+      }
+    });
+  }
+}
+
+// タイマー終了時に通知を送る
+function sendNotification() {
+  if (Notification.permission === "granted") {
+    console.log('sendNotification()')
+    new Notification("タイマー終了", {
+      body: "設定したタイマーが終了しました。",
+      // icon: "/path/to/icon.png" // あとでアイコンを追加する
+    });
+  }
+}
